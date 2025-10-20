@@ -1,1 +1,20 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+      - echo "Installing dependencies..."
+      - pip install -r requirements.txt
+  build:
+    commands:
+      - echo "Starting model training in SageMaker..."
+      - python src/train.py
+  post_build:
+    commands:
+      - echo "Deploying model endpoint..."
+      - python src/inference.py
+
+artifacts:
+  files:
+    - '**/*'
 
